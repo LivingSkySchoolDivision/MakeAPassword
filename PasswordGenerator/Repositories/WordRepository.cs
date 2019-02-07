@@ -15,7 +15,6 @@ namespace PasswordGenerator
         private List<string> Adjectives = new List<string>();
         private List<string> Nouns = new List<string>();
         private List<string> Separators = new List<string>();
-        private int minPasswordLength = 10;
 
         public WordRepository()
         {            
@@ -112,43 +111,70 @@ namespace PasswordGenerator
 
         }
 
-        public string GetRandomAdjective()
+        private string GetRandomAdjective()
         {
             return Adjectives[_random.Next(0, Adjectives.Count)];
         }
 
-        public string GetRandomNoun()
+        private string GetRandomNoun()
         {
             return Nouns[_random.Next(0, Nouns.Count)];
         }
 
-        public string GetRandomSeparator()
+        private string GetRandomSeparator()
         {
             return Separators[_random.Next(0, Separators.Count)];
         }
 
-        public string GetRandomPassword()
+        private string getWord()
+        {
+            string word = string.Empty;
+
+            if ((_random.Next() % 2) == 0)
+            {
+                word = GetRandomNoun();
+            } else
+            {
+                word = GetRandomAdjective();
+            }
+
+            // Randomly capitalize the word
+            /*
+            if (_random.Next() % 3 == 0)
+            {
+                word = word[0].ToString().ToUpper() + word.Substring(1, word.Length - 1); 
+            }*/
+
+            // Return the word
+            return word;
+        }
+
+        private string capitalize(string word)
+        {
+            return word[0].ToString().ToUpper() + word.Substring(1, word.Length - 1);
+        }
+
+
+        public string GetRandomPassword(int minLength)
         {            
             string separator = this.GetRandomSeparator();
             string password = string.Empty;
 
-            // Use a different method sometimes
-            if ((_random.Next() % 3) == 0)
+
+            if (_random.Next() % 5 == 0)
             {
-                password = this.GetRandomNoun() + separator + this.GetRandomNoun();
-                if (password.Length < minPasswordLength)
-                {
-                    password += separator + this.GetRandomNoun();
-                }
+                password = capitalize(this.GetRandomAdjective()) + capitalize(this.getWord()) + capitalize(this.getWord());
             }
             else
             {
-                password = this.GetRandomAdjective() + separator + this.GetRandomNoun();
-                if (password.Length < minPasswordLength)
+                password = this.getWord() + separator + this.getWord();
+                if (password.Length < minLength)
                 {
-                    password += separator + this.GetRandomNoun();
+                    password += separator + this.getWord();
                 }
             }
+
+            
             return password;
         }
 

@@ -12,27 +12,37 @@ namespace PasswordGenerator
     public partial class index : System.Web.UI.Page
     {
         private static WordRepository wordRepo = new WordRepository();
-        private int numPasswordsToGenerateAtOnce = 10;
+        private static ComplexPasswordRepository complexRepo = new ComplexPasswordRepository();
+        private int numPasswordsToGenerateAtOnce = 5;
+        private int complexPasswordLength = 63;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if ((Request.QueryString.AllKeys.Contains("forcereload")) || (Request.QueryString.AllKeys.Contains("dbreload")))
             {
                 wordRepo = new WordRepository();
+                complexRepo = new ComplexPasswordRepository();
             }
 
-            StringBuilder passwords = new StringBuilder();
+            StringBuilder wordPasswords_short = new StringBuilder();
+            StringBuilder wordPasswords_long = new StringBuilder();
+            StringBuilder complexPasswords = new StringBuilder();
             
             for(int x = 0; x < numPasswordsToGenerateAtOnce; x++)
             {
-                passwords.Append(wordRepo.GetRandomPassword());
-                passwords.Append("<BR>");
+                wordPasswords_long.Append(wordRepo.GetRandomPassword(16));
+                wordPasswords_long.Append("<BR>");
+
+                wordPasswords_short.Append(wordRepo.GetRandomPassword(10));
+                wordPasswords_short.Append("<BR>");
+
+                complexPasswords.Append(complexRepo.GetRandomPassword(complexPasswordLength));
+                complexPasswords.Append("<BR>");                
             }
 
-            // Remove the last <BR>
-            //passwords.Remove(passwords.Length - 4, 4);
-
-            lblPassword.Text = passwords.ToString();
+            lblPassword.Text = wordPasswords_short.ToString();
+            lblPassword.Text += wordPasswords_long.ToString();
+            lblComplexPasswords.Text = complexPasswords.ToString();
         }
     }
 }
