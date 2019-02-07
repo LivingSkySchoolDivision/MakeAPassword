@@ -1,0 +1,75 @@
+﻿body {
+    font-family: sans-serif;
+}
+
+.control_table {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#page_container {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo_container {
+    margin: 25px;
+    text-align: center;
+}
+
+#lskysd_logo {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caution-icon {
+    vertical-align: middle;
+}
+
+li {
+    list-style-type: square;
+    margin-bottom: 10px;
+}
+
+.LoginFormContainer {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+}
+
+.already_active_text {
+    font-size: 8pt;
+}
+
+.usernameandpassword {
+    font-size: 32pt;
+}
+
+.credential_table {
+    width: 100%;
+}
+
+.usernameandpassword_title {
+    text-transform: uppercase;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.usernameandpassword {
+    padding: 10px;
+    border: 2px solid #C0C0C0;
+    border-radius: 5px;
+    text-align: center;
+    font-family: serif;
+}
+
+.input_error {
+    border: 1px solid red;
+}
+
+.smalltext {
+    font-size: 8pt;
+}
