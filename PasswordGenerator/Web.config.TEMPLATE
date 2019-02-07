@@ -19,5 +19,14 @@
         warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+"/>
     </compilers>
   </system.codedom>
+  
+    
+  <appSettings>
+        
+  </appSettings>
+
+  <connectionStrings>
+      <add name="Internal" connectionString="CONNECTION STRING GOES HERE" providerName="System.Data.SqlClient" />
+  </connectionStrings>
 
 </configuration>
