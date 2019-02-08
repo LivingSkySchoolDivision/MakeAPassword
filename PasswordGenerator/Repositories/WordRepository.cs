@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace PasswordGenerator
@@ -155,27 +156,46 @@ namespace PasswordGenerator
         }
 
 
-        public string GetRandomPassword(int minLength)
-        {            
-            string separator = this.GetRandomSeparator();
-            string password = string.Empty;
-
-
-            if (_random.Next() % 5 == 0)
+        public string GetRandomPassword(int minLength, bool splitWithSpecialCharacters)
+        {
+            string separator = splitWithSpecialCharacters ? this.GetRandomSeparator() : string.Empty;
+            List<string> words = new List<string>();
+            int characterCount = 0;
+            
+            do
             {
-                password = capitalize(this.GetRandomAdjective()) + capitalize(this.getWord()) + capitalize(this.getWord());
-            }
-            else
-            {
-                password = this.GetRandomAdjective() + separator + this.getWord();
-                if (password.Length < minLength)
+                string word = this.getWord();
+                characterCount += word.Length;
+                words.Add(word);
+
+                if (splitWithSpecialCharacters)
                 {
-                    password += separator + this.getWord();
+                    words.Add(separator);
+                    characterCount++;
+                }
+            }
+            while (characterCount < minLength);
+
+            // Remove the last separater if using separators
+            if (splitWithSpecialCharacters)
+            {
+                words.RemoveAt(words.Count-1);
+            }
+
+            // Assemble the password
+            StringBuilder assembledPassword = new StringBuilder();
+            foreach(string word in words)
+            {
+                if (splitWithSpecialCharacters)
+                {
+                    assembledPassword.Append(word);
+                } else
+                {
+                    assembledPassword.Append(capitalize(word));
                 }
             }
 
-            
-            return password;
+            return assembledPassword.ToString();
         }
 
     }

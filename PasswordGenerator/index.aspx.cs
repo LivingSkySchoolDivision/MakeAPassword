@@ -13,7 +13,7 @@ namespace PasswordGenerator
     {
         private static WordRepository wordRepo = new WordRepository();
         private static ComplexPasswordRepository complexRepo = new ComplexPasswordRepository();
-        private int numPasswordsToGenerateAtOnce = 5;
+        private int numPasswordsToGenerateAtOnce = 4;
         private int complexPasswordLength = 63;
         private int yubikeyPasswordLength = 32;
 
@@ -25,6 +25,7 @@ namespace PasswordGenerator
                 complexRepo = new ComplexPasswordRepository();
             }
 
+            StringBuilder wordPasswords_simple = new StringBuilder();
             StringBuilder wordPasswords_short = new StringBuilder();
             StringBuilder wordPasswords_long = new StringBuilder();
             StringBuilder complexPasswords = new StringBuilder();
@@ -32,11 +33,14 @@ namespace PasswordGenerator
 
             for (int x = 0; x < numPasswordsToGenerateAtOnce; x++)
             {
-                wordPasswords_long.Append(wordRepo.GetRandomPassword(16));
+                wordPasswords_long.Append(wordRepo.GetRandomPassword(16, true));
                 wordPasswords_long.Append("<BR>");
 
-                wordPasswords_short.Append(wordRepo.GetRandomPassword(10));
+                wordPasswords_short.Append(wordRepo.GetRandomPassword(10, true));
                 wordPasswords_short.Append("<BR>");
+
+                wordPasswords_simple.Append(wordRepo.GetRandomPassword(10, false));
+                wordPasswords_simple.Append("<BR>");
 
                 complexPasswords.Append(complexRepo.GetRandomPassword(complexPasswordLength));
                 complexPasswords.Append("<BR>");
@@ -45,8 +49,9 @@ namespace PasswordGenerator
                 complexPasswords_Yubikey.Append("<BR>");
             }
 
-            lblPassword.Text = wordPasswords_short.ToString();
-            lblPassword.Text += wordPasswords_long.ToString();
+            lblPassword.Text = wordPasswords_simple.ToString();
+            lblPassword.Text += wordPasswords_short.ToString();
+            lblPassword.Text += wordPasswords_long.ToString();            
             lblComplexPasswords.Text = complexPasswords.ToString();
             lblYubikeyPasswords.Text = complexPasswords_Yubikey.ToString();
         }
