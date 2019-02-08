@@ -24,6 +24,10 @@
             <asp:TableCell><div class="usernameandpassword" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 10pt;"><asp:Label ID="lblComplexPasswords" runat="server" Text=""></asp:Label></div></asp:TableCell>      
             <h2>How to use complex passwords</h2>
             <p>Use these with a password manager system, such as <a href="https://www.lastpass.com/">LastPass</a>, or <a href="https://keepass.info/">KeePass</a>. Don't try to memorize these, they are meant to be either copied and pasted, or automatically submitted via a password manager program or browser add-in.</p>
+            <h1>Complex passwords for YubiKeys</h1>            
+            <p>Yubikey static passwords are limited to 32 characters.</p>
+            <asp:TableCell><div class="usernameandpassword" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 10pt;"><asp:Label ID="lblYubikeyPasswords" runat="server" Text=""></asp:Label></div></asp:TableCell>                              
+            <br /><br /><br /><br /><br />
         </div>
     </form>
     </div>
