@@ -167,7 +167,7 @@ namespace PasswordGenerator
             }
             else
             {
-                password = this.getWord() + separator + this.getWord();
+                password = this.GetRandomAdjective() + separator + this.getWord();
                 if (password.Length < minLength)
                 {
                     password += separator + this.getWord();
