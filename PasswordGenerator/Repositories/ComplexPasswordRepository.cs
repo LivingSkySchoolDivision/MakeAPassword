@@ -10,7 +10,7 @@ namespace PasswordGenerator
     {
         private Random _random = new Random(Guid.NewGuid().GetHashCode());
         private string allowedCharacters_justAlpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        private string allowedCharacters_all = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-?][{}|,.";
+        private string allowedCharacters_all = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-?][{}|,.:;`~";
 
         public string GetRandomPassword(int Length, bool specialCharacters)
         {
