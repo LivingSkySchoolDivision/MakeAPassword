@@ -127,27 +127,21 @@ namespace PasswordGenerator
             return Separators[_random.Next(0, Separators.Count)];
         }
 
-        private string getWord()
+
+        private string getWord(bool forceAdjective)
         {
-            string word = string.Empty;
+            if (forceAdjective)
+            {
+                return this.GetRandomAdjective();
+            }            
 
             if ((_random.Next() % 2) == 0)
             {
-                word = GetRandomNoun();
+                return GetRandomAdjective();
             } else
             {
-                word = GetRandomAdjective();
-            }
-
-            // Randomly capitalize the word
-            /*
-            if (_random.Next() % 3 == 0)
-            {
-                word = word[0].ToString().ToUpper() + word.Substring(1, word.Length - 1); 
-            }*/
-
-            // Return the word
-            return word;
+                return GetRandomNoun();
+            }            
         }
 
         private string capitalize(string word)
@@ -164,7 +158,7 @@ namespace PasswordGenerator
             
             do
             {
-                string word = this.getWord();
+                string word = this.getWord(characterCount == 0);
                 characterCount += word.Length;
                 words.Add(word);
 
