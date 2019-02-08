@@ -150,15 +150,21 @@ namespace PasswordGenerator
         }
 
 
-        public string GetRandomPassword(int minLength, bool splitWithSpecialCharacters)
-        {
+        public string GetRandomPassword(int minLength, bool splitWithSpecialCharacters, bool simpleSeparators)
+        {            
             string separator = splitWithSpecialCharacters ? this.GetRandomSeparator() : string.Empty;
+            if (simpleSeparators && splitWithSpecialCharacters)
+            {
+                separator = "-";
+            }
+
             List<string> words = new List<string>();
             int characterCount = 0;
-            
+            int wordCount = 0;
             do
             {
                 string word = this.getWord(characterCount == 0);
+                wordCount++;
                 characterCount += word.Length;
                 words.Add(word);
 
@@ -168,7 +174,7 @@ namespace PasswordGenerator
                     characterCount++;
                 }
             }
-            while (characterCount < minLength);
+            while ((characterCount < minLength) && (wordCount < 2));
 
             // Remove the last separater if using separators
             if (splitWithSpecialCharacters)
