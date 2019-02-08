@@ -15,7 +15,7 @@ namespace PasswordGenerator
         private Random _random = new Random(Guid.NewGuid().GetHashCode());
         private List<string> Adjectives = new List<string>();
         private List<string> Nouns = new List<string>();
-        private List<string> Separators = new List<string>();
+        private List<string> Separators = new List<string>() { "-", " ", "!", "~", "@", "$", "%", "*", "^", "?", ".", ";", "" };
 
         public WordRepository()
         {            
@@ -36,7 +36,7 @@ namespace PasswordGenerator
                         {
                             while (dataReader.Read())
                             {
-                                string parsedValue = dataReader["val"].ToString().Trim();
+                                string parsedValue = dataReader["val"].ToString().Trim().ToLower();
                                 if (!string.IsNullOrEmpty(parsedValue))
                                 {
                                     if (!Adjectives.Contains(parsedValue))
@@ -61,7 +61,7 @@ namespace PasswordGenerator
                         {
                             while (dataReader.Read())
                             {
-                                string parsedValue = dataReader["val"].ToString().Trim();
+                                string parsedValue = dataReader["val"].ToString().Trim().ToLower();
                                 if (!string.IsNullOrEmpty(parsedValue))
                                 {
                                     if (!Nouns.Contains(parsedValue))
@@ -73,36 +73,7 @@ namespace PasswordGenerator
                         }
                         sqlCommand.Connection.Close();
                     }
-
-                    // Separators
-                    using (SqlCommand sqlCommand = new SqlCommand())
-                    {
-                        sqlCommand.Connection = connection;
-                        sqlCommand.CommandType = CommandType.Text;
-                        sqlCommand.CommandText = "SELECT * FROM separators";
-                        sqlCommand.Connection.Open();
-                        SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                        if (dataReader.HasRows)
-                        {
-                            while (dataReader.Read())
-                            {
-                                string parsedValue = dataReader["val"].ToString().Trim();
-                                if (!string.IsNullOrEmpty(parsedValue))
-                                {
-                                    if (!Separators.Contains(parsedValue))
-                                    {
-                                        Separators.Add(parsedValue);
-                                    }
-                                }
-                            }
-                        }
-                        sqlCommand.Connection.Close();
-                    }
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -128,13 +99,8 @@ namespace PasswordGenerator
         }
 
 
-        private string getWord(bool forceAdjective)
+        private string getWord()
         {
-            if (forceAdjective)
-            {
-                return this.GetRandomAdjective();
-            }            
-
             if ((_random.Next() % 2) == 0)
             {
                 return GetRandomAdjective();
@@ -146,11 +112,16 @@ namespace PasswordGenerator
 
         private string capitalize(string word)
         {
+            if (word.Length < 1)
+            {
+                return word;
+            }
+
             return word[0].ToString().ToUpper() + word.Substring(1, word.Length - 1);
         }
 
 
-        public string GetRandomPassword(int minLength, bool splitWithSpecialCharacters, bool simpleSeparators)
+        public string GetRandomPassword(int minLength, bool splitWithSpecialCharacters, bool simpleSeparators, bool Capitalize)
         {            
             string separator = splitWithSpecialCharacters ? this.GetRandomSeparator() : string.Empty;
             if (simpleSeparators && splitWithSpecialCharacters)
@@ -159,40 +130,39 @@ namespace PasswordGenerator
             }
 
             List<string> words = new List<string>();
-            int characterCount = 0;
-            int wordCount = 0;
+
+            // Start with one word, so when we add one in the loop, it has at least two words
+            string firstWord = GetRandomAdjective();
+            words.Add(firstWord);
+            int characterCount = firstWord.Length;
+
+            // Add more words
             do
             {
-                string word = this.getWord(characterCount == 0);
-                wordCount++;
-                characterCount += word.Length;
-                words.Add(word);
-
                 if (splitWithSpecialCharacters)
                 {
                     words.Add(separator);
-                    characterCount++;
+                    characterCount += separator.Length;
                 }
-            }
-            while ((characterCount < minLength) && (wordCount < 2));
 
-            // Remove the last separater if using separators
-            if (splitWithSpecialCharacters)
-            {
-                words.RemoveAt(words.Count-1);
+                string word = this.getWord();
+                characterCount += word.Length;
+                words.Add(word);                
             }
-
+            while (characterCount < minLength);
+                                    
             // Assemble the password
             StringBuilder assembledPassword = new StringBuilder();
             foreach(string word in words)
             {
-                if (splitWithSpecialCharacters)
-                {
-                    assembledPassword.Append(word);
-                } else
+                if (!splitWithSpecialCharacters || Capitalize)
                 {
                     assembledPassword.Append(capitalize(word));
                 }
+                else
+                {
+                    assembledPassword.Append(word);
+                }                
             }
 
             return assembledPassword.ToString();

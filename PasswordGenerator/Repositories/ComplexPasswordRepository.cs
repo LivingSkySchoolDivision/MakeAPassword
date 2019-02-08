@@ -12,18 +12,10 @@ namespace PasswordGenerator
         private string allowedCharacters_justAlpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         private string allowedCharacters_all = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-?][{}|,.";
 
-        public string GetRandomPassword(int Length)
+        public string GetRandomPassword(int Length, bool specialCharacters)
         {
             StringBuilder password = new StringBuilder();
-            string allowedCharacters = "";
-
-            if (_random.Next() % 2 == 0)
-            {
-                allowedCharacters = allowedCharacters_all;
-            } else
-            {
-                allowedCharacters = allowedCharacters_justAlpha;
-            }
+            string allowedCharacters = specialCharacters ? allowedCharacters_all : allowedCharacters_justAlpha;
 
             for(int x = 0; x < Length; x++)
             {

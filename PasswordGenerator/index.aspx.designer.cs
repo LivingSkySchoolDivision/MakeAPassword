@@ -58,12 +58,21 @@ namespace PasswordGenerator {
         protected global::System.Web.UI.WebControls.Label lblComplexPasswords;
         
         /// <summary>
-        /// lblYubikeyPasswords control.
+        /// lblYubikeyPasswords_alpha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblYubikeyPasswords;
+        protected global::System.Web.UI.WebControls.Label lblYubikeyPasswords_alpha;
+        
+        /// <summary>
+        /// lblYubikeyPasswords_special control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblYubikeyPasswords_special;
     }
 }

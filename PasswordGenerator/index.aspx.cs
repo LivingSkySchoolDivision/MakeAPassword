@@ -28,32 +28,45 @@ namespace PasswordGenerator
             StringBuilder wordPasswords_simple = new StringBuilder();
             StringBuilder wordPasswords_short = new StringBuilder();
             StringBuilder wordPasswords_long = new StringBuilder();
-            StringBuilder complexPasswords = new StringBuilder();
-            StringBuilder complexPasswords_Yubikey = new StringBuilder();
+            StringBuilder complexPasswords_alpha = new StringBuilder();
+            StringBuilder complexPasswords_special = new StringBuilder();
+            StringBuilder complexPasswords_Yubikey_alpha = new StringBuilder();
+            StringBuilder complexPasswords_Yubikey_special = new StringBuilder();
 
             for (int x = 0; x < numPasswordsToGenerateAtOnce; x++)
             {
-                wordPasswords_long.Append(wordRepo.GetRandomPassword(16, true, false));
-                wordPasswords_long.Append("<BR>");
-
-                wordPasswords_short.Append(wordRepo.GetRandomPassword(10, true, true));
-                wordPasswords_short.Append("<BR>");
-
-                wordPasswords_simple.Append(wordRepo.GetRandomPassword(10, false, false));
+                wordPasswords_simple.Append(wordRepo.GetRandomPassword(10, false, false, false));
                 wordPasswords_simple.Append("<BR>");
 
-                complexPasswords.Append(complexRepo.GetRandomPassword(complexPasswordLength));
-                complexPasswords.Append("<BR>");
+                wordPasswords_short.Append(wordRepo.GetRandomPassword(10, true, true, false));
+                wordPasswords_short.Append("<BR>");
 
-                complexPasswords_Yubikey.Append(complexRepo.GetRandomPassword(yubikeyPasswordLength));
-                complexPasswords_Yubikey.Append("<BR>");
+                wordPasswords_long.Append(wordRepo.GetRandomPassword(16, true, false, true));
+                wordPasswords_long.Append("<BR>");
+            }
+
+            for (int x = 0; x < (numPasswordsToGenerateAtOnce / 2); x++)
+            {
+                complexPasswords_alpha.Append(complexRepo.GetRandomPassword(complexPasswordLength, false));
+                complexPasswords_alpha.Append("<BR>");
+
+                complexPasswords_special.Append(complexRepo.GetRandomPassword(complexPasswordLength, true));
+                complexPasswords_special.Append("<BR>");
+
+                complexPasswords_Yubikey_alpha.Append(complexRepo.GetRandomPassword(yubikeyPasswordLength, false));
+                complexPasswords_Yubikey_alpha.Append("<BR>");
+
+                complexPasswords_Yubikey_special.Append(complexRepo.GetRandomPassword(yubikeyPasswordLength, true));
+                complexPasswords_Yubikey_special.Append("<BR>");
             }
 
             lblWordBasedSimple.Text = wordPasswords_simple.ToString();
             lblWordBasedMedium.Text += wordPasswords_short.ToString();
-            lblWordBasedLong.Text += wordPasswords_long.ToString();            
-            lblComplexPasswords.Text = complexPasswords.ToString();
-            lblYubikeyPasswords.Text = complexPasswords_Yubikey.ToString();
+            lblWordBasedLong.Text += wordPasswords_long.ToString();
+            lblComplexPasswords.Text = complexPasswords_alpha.ToString();
+            lblComplexPasswords.Text += complexPasswords_special.ToString();
+            lblYubikeyPasswords_alpha.Text = complexPasswords_Yubikey_alpha.ToString();
+            lblYubikeyPasswords_special.Text = complexPasswords_Yubikey_special.ToString();
         }
     }
 }
