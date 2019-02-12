@@ -41,7 +41,7 @@ namespace PasswordGenerator
                 wordPasswords_short.Append(wordRepo.GetRandomPassword(10, true, true, false));
                 wordPasswords_short.Append("<BR>");
 
-                wordPasswords_long.Append(wordRepo.GetRandomPassword(16, true, false, true));
+                wordPasswords_long.Append(wordRepo.GetRandomPassword(18, true, true, true));
                 wordPasswords_long.Append("<BR>");
             }
 
