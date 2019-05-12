@@ -15,7 +15,9 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh "docker build --no-cache -t ${PRIVATE_REPO}:latest -t ${PRIVATE_REPO}:${TAG} ."
+                dir("LSSDPasswordGenCore") {
+                    sh "docker build --no-cache -t ${PRIVATE_REPO}:latest -t ${PRIVATE_REPO}:${TAG} ."
+                }
             }
         }
         stage('Docker push') {
