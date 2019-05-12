@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        REPO = "makeapassword'
+        REPO = "makeapassword"
         PRIVATE_REPO = "${PRIVATE_DOCKER_REGISTRY}/${REPO}"
         TAG = "j-${env.BUILD_NUMBER}"
     }
