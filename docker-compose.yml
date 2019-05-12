@@ -2,6 +2,12 @@
 services:
   makeapassword:
     image: docker-registry.lskysd.ca/makeapassword:latest
+    healthcheck:
+      test: ["CMD","-f","http://localhost"]
+      interval: 5m
+      timeout: 5s
+      retries: 3
+      start_period: 1m
     ports:
       - 80
     networks:
