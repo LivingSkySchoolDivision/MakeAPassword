@@ -1,7 +1,7 @@
 ﻿version: '3.7'
 services:
   makeapassword:
-    image: docker-registry.lskysd.ca/web-external/makeapassword:latest
+    image: docker-registry.lskysd.ca/makeapassword:latest
     ports:
       - 80
     networks:
