@@ -28,7 +28,6 @@ namespace LSSDPasswordGenCore.Pages
             stopwatch.Start();
             ComplexPasswordGenerator complexGen = new ComplexPasswordGenerator();
             WordBasedPasswordGenerator wordGen = new WordBasedPasswordGenerator();
-            EFFWordBasedPasswordGenerator effGen = new EFFWordBasedPasswordGenerator();
 
             this.PasswordsComplexHigh = new List<string>();
             this.PasswordsComplexLow = new List<string>();
@@ -47,14 +46,15 @@ namespace LSSDPasswordGenCore.Pages
                 PasswordsComplexLow.Add(complexGen.GeneratePassword(64, PasswordComplexity.Medium));                
             }
 
+            // So passwords are sorted strongest on bottom
             for (int x = 0; x < _numPasswordsToGenerate; x++)
             {
                 PasswordsYubikeyHigh.Add(complexGen.GeneratePassword(32, PasswordComplexity.High));
                 PasswordsYubikeyLow.Add(complexGen.GeneratePassword(32, PasswordComplexity.Medium));
 
-                PasswordsWordsHigh.Add(effGen.GeneratePassword(18, PasswordComplexity.High));
-                PasswordsWordsMedium.Add(effGen.GeneratePassword(16, PasswordComplexity.Medium));
-                PasswordsWordsLow.Add(effGen.GeneratePassword(12, PasswordComplexity.Medium));
+                PasswordsWordsHigh.Add(wordGen.GeneratePassword(18, PasswordComplexity.High));
+                PasswordsWordsMedium.Add(wordGen.GeneratePassword(16, PasswordComplexity.Medium));
+                PasswordsWordsLow.Add(wordGen.GeneratePassword(12, PasswordComplexity.Medium));
             }
             stopwatch.Stop();
         }
