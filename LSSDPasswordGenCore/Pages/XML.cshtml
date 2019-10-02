@@ -1,0 +1,17 @@
+﻿@page
+@using LSSDPasswordGenerators.Generators;
+@{
+    Layout = null;
+    Response.ContentType = "text/xml";
+    ComplexPasswordGenerator complexGen = new ComplexPasswordGenerator();
+    WordBasedPasswordGenerator wordGen = new WordBasedPasswordGenerator();
+}
+<?xml version="1.0" encoding="UTF-8" ?>
+<passwords>
+    <word-short>@wordGen.GeneratePassword(12, PasswordComplexity.High)</word-short>
+    <word-long>@wordGen.GeneratePassword(20, PasswordComplexity.High)</word-long>
+    <complex-short>@complexGen.GeneratePassword(12, PasswordComplexity.Medium)</complex-short>
+    <complex-long>@complexGen.GeneratePassword(18, PasswordComplexity.Medium)</complex-long>
+    <complex2-short>@complexGen.GeneratePassword(12, PasswordComplexity.High)</complex2-short>
+    <complex2-long>@complexGen.GeneratePassword(18, PasswordComplexity.High)</complex2-long>
+</passwords>
