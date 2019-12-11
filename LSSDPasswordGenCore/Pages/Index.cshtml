@@ -30,7 +30,7 @@
         }
 
         #page_container {
-            width: 800px;
+            width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -108,6 +108,9 @@
     <div id="page_container">
         <h1>Make-A-Password</h1>
         <h3>Passwords you can memorize</h3>
+        <p>The idea behind these passwords is that <b>longer</b> passwords <b>that you can remember</b> are better than shorter passwords that are harder to remember (but easy for a computer to brute-force).</p>
+        <p>Pick a password from the list, and make up a sentence or a story with those words that you can remember. Make up a story, remember that mental picture. Add or remove words or punctuation if you want, or replace vowels with special characters that only you remember.</p>
+        <p>Many of the passwords below won't make sense - reload the page to make more, and find one that catches your eye.</p>
 
         <table style="width:100%;">
             <tr>
@@ -143,9 +146,6 @@
                 </td>
             </tr>
         </table><div class="reload_message">Reload the page to generate more</div>
-        <h4>How to use memorable passwords</h4>
-        <p>The idea behind these passwords is that <b>longer</b> passwords <b>that you can remember</b> are better than shorter passwords that are harder to remember.</p>
-        <p>Pick a password from the above list, and make up a sentence or a story with those words that you can remember. Combine several together to make an extremely hard to guess password.</p>
         <br /><br />
         <h3>Complex passwords for password managers</h3>
         <asp:TableCell>
@@ -197,7 +197,9 @@
             <li><a href="xml">XML</a></li>
             <li><a href="json">JSON</a></li>
         </ul>
-        
+        <h2>Complexity stats</h2>
+        <p>See the <a href="/stats">Stats</a> page for complexity related information about this password generator.</p>
+
         <!--Passwords generated in @Model.stopwatch.Elapsed-->
         <br /><br /><br />
     </div>

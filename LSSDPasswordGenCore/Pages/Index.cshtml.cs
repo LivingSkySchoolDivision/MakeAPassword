@@ -18,8 +18,7 @@ namespace LSSDPasswordGenCore.Pages
         public List<string> PasswordsComplexHigh { get; set; }
         public List<string> PasswordsYubikeyLow { get; set; }
         public List<string> PasswordsYubikeyHigh { get; set; }
-        public Stopwatch stopwatch = new Stopwatch();
-        
+        public Stopwatch stopwatch = new Stopwatch();        
         private const int _numPasswordsToGenerate = 5;
 
         public void OnGet()
@@ -28,7 +27,6 @@ namespace LSSDPasswordGenCore.Pages
             stopwatch.Start();
             ComplexPasswordGenerator complexGen = new ComplexPasswordGenerator();
             WordBasedPasswordGenerator wordGen = new WordBasedPasswordGenerator();
-
             this.PasswordsComplexHigh = new List<string>();
             this.PasswordsComplexLow = new List<string>();
             this.PasswordsWordsHigh = new List<string>();
