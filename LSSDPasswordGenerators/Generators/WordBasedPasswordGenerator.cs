@@ -9,11 +9,11 @@ namespace LSSDPasswordGenerators.Generators
 {
     public class WordBasedPasswordGenerator
     {
-        private Random _random = new Random(Guid.NewGuid().GetHashCode());
+        private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
         private readonly List<string> _separators = new List<string>() { "", "#", "&", ";", "!", ":", "_", "-", "?", "?!", "*", "#", "+", ".", ",", ",SoI", ",And", ",The", ",WithThe", ",With", ",without", ",But", ",ButWith", ",ButAlso", ",InsteadOf", ",Then", ",ThenA", ",AlongA", ",Because", ",AlongWith", ",AlongThe", ",OverThe", ",OverA", ",BecauseOf", ",BecauseOfThe", "MoreThan", "LessThan", ",Also", ",UntilThe", ",Plus", ",At", ",AtThe", "InA", ",AlongSideA", ",BesideThe" };
 
-        private readonly List<string> _wordlist_medium;
-        private readonly List<string> _wordlist_high;
+        private readonly List<string> _wordlistMedium;
+        private readonly List<string> _wordlistHigh;
        
 
         // Brackets MUST be two characters long or things will crash
@@ -23,21 +23,21 @@ namespace LSSDPasswordGenerators.Generators
             "()","()","()","()","{}","[]","<>", "--"
         };
 
-        private int separator_count = 0;
-        private int wordCount_med = 0;
-        private int wordCount_high = 0;
+        private readonly int _separatorCount = 0;
+        private readonly int _wordCountMedium = 0;
+        private readonly int _wordCountHigh = 0;
 
         public WordBasedPasswordGenerator()
         {
             MediumComplexityWordList mediumWordList = new MediumComplexityWordList();
             HighComplexityWordList highWordList = new HighComplexityWordList();
 
-            this._wordlist_medium = mediumWordList.Words;
-            this._wordlist_high = highWordList.Words;
+            this._wordlistMedium = mediumWordList.Words;
+            this._wordlistHigh = highWordList.Words;
 
-            this.wordCount_med = _wordlist_medium.Count();
-            this.wordCount_high = _wordlist_high.Count();
-            this.separator_count = _separators.Count();
+            this._wordCountMedium = _wordlistMedium.Count();
+            this._wordCountHigh = _wordlistHigh.Count();
+            this._separatorCount = _separators.Count();
 
             // Scramble up the random number generator a little more just for kicks
             for (int x = 0; x < DateTime.Now.Second; x++)
@@ -48,36 +48,36 @@ namespace LSSDPasswordGenerators.Generators
 
         public int SeparatorCount()
         {
-            return separator_count;
+            return _separatorCount;
         }
 
         public int WordsInWordList(PasswordComplexity complexity)
         {
             if (complexity == PasswordComplexity.Medium)
             {
-                return wordCount_med;
+                return _wordCountMedium;
             }
             else
             {
-                return wordCount_high;
+                return _wordCountHigh;
             }
         }
 
         public double PotentialCombinations(PasswordComplexity complexity, int words)
         {
-            return Math.Pow(WordsInWordList(complexity), words) * Math.Pow(separator_count, words - 1);
+            return Math.Pow(WordsInWordList(complexity), words) * Math.Pow(_separatorCount, words - 1);
         }
 
-        public string GeneratePassword(int Length, PasswordComplexity complexity)
+        public string GeneratePassword(int length, PasswordComplexity complexity)
         {
             switch (complexity)
             {
                 case PasswordComplexity.Medium:
-                    return genPasswordFromWordlist(_wordlist_medium, Length);
+                    return genPasswordFromWordlist(_wordlistMedium, length);
                 case PasswordComplexity.High:
-                    return genPasswordFromWordlist(_wordlist_high, Length);
+                    return genPasswordFromWordlist(_wordlistHigh, length);
                 default:
-                    return genPasswordFromWordlist(_wordlist_high, Length);
+                    return genPasswordFromWordlist(_wordlistHigh, length);
             }
         }
 
