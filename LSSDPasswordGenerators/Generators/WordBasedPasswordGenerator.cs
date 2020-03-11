@@ -10,11 +10,10 @@ namespace LSSDPasswordGenerators.Generators
     public class WordBasedPasswordGenerator
     {
         private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
-        private readonly List<string> _separators = new List<string>() { "", "#", "&", ";", "!", ":", "_", "-", "?", "?!", "*", "#", "+", ".", ",", ",SoI", ",And", ",The", ",WithThe", ",With", ",without", ",But", ",ButWith", ",ButAlso", ",InsteadOf", ",Then", ",ThenA", ",AlongA", ",Because", ",AlongWith", ",AlongThe", ",OverThe", ",OverA", ",BecauseOf", ",BecauseOfThe", "MoreThan", "LessThan", ",Also", ",UntilThe", ",Plus", ",At", ",AtThe", "InA", ",AlongSideA", ",BesideThe" };
+        private readonly List<string> _separators = new List<string>() { "#", "&", ";", "!", ":", "_", "-", "?", "?!", "*", "#", "+", ".", ",", ",SoI", ",And", ",The", ",WithThe", ",With", ",without", ",But", ",ButWith", ",ButAlso", ",InsteadOf", ",Then", ",ThenA", ",AlongA", ",Because", ",AlongWith", ",AlongThe", ",OverThe", ",OverA", ",BecauseOf", ",BecauseOfThe", "MoreThan", "LessThan", ",Also", ",UntilThe", ",Plus", ",At", ",AtThe", "InA", ",AlongSideA", ",BesideThe" };
 
         private readonly List<string> _wordlistMedium;
         private readonly List<string> _wordlistHigh;
-       
 
         // Brackets MUST be two characters long or things will crash
         // Put sets in multiple times for higher chance to pick them
