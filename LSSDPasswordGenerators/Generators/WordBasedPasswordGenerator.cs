@@ -10,7 +10,7 @@ namespace LSSDPasswordGenerators.Generators
     public class WordBasedPasswordGenerator
     {
         private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
-        private readonly List<string> _separators = new List<string>() { "#", "&", ";", "!", ":", "_", "-", "?", "?!", "*", "#", "+", ".", ",", ",SoI", ",And", ",The", ",WithThe", ",With", ",without", ",But", ",ButWith", ",ButAlso", ",InsteadOf", ",Then", ",ThenA", ",AlongA", ",Because", ",AlongWith", ",AlongThe", ",OverThe", ",OverA", ",BecauseOf", ",BecauseOfThe", "MoreThan", "LessThan", ",Also", ",UntilThe", ",Plus", ",At", ",AtThe", "InA", ",AlongSideA", ",BesideThe" };
+        private readonly List<string> _separators = new List<string>() { "#", "&", ";", "!", ":", "_", "-", "?", "?!", "*", "#", "+", ".", ",", ",SoI", ",And", ",The", ",WithThe", ",With", ",without", ",But", ",ButWith", ",ButAlso", ",InsteadOf", ",Then", ",ThenA", ",AlongA", ",Because", ",AlongWith", ",AlongThe", ",OverThe", ",OverA", ",BecauseOf", ",BecauseOfThe", "More-Than", "Less-Than", ",Also", ",UntilThe", ",Plus", ",At", ",AtThe", "InA", ",AlongSideA", ",BesideThe" };
 
         private readonly List<string> _wordlistMedium;
         private readonly List<string> _wordlistHigh;
@@ -93,7 +93,6 @@ namespace LSSDPasswordGenerators.Generators
             {
                 return wordlist[_random.Next(0, wordlist.Count)];
             }
-            
         }
 
         private string getRandomSpacer()
