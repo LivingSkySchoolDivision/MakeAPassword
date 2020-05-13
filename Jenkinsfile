@@ -9,7 +9,7 @@ pipeline {
         stage('Git clone') {
             steps {
                 git branch: 'master',
-                    url: 'https://sourcecode.lskysd.ca/PublicCode/MakeAPassword.git'
+                    url: 'https://github.com/LivingSkySchoolDivision/MakeAPassword.git'
             }
         }
         stage('Docker build') {
