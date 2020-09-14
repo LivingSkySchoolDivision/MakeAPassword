@@ -4905,7 +4905,6 @@ namespace LSSDPasswordGenerators.WordLists
             ,"goldstein"
             ,"golf"
             ,"goliath"
-            ,"gonad"
             ,"gondola"
             ,"gone"
             ,"gong"
