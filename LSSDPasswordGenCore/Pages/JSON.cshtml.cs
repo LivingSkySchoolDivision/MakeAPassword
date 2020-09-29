@@ -12,6 +12,7 @@ namespace LSSDPasswordGenCore.Pages
     {
         readonly ComplexPasswordGenerator complexGen = new ComplexPasswordGenerator();
         readonly WordBasedPasswordGenerator wordGen = new WordBasedPasswordGenerator();
+        readonly NumericalPINGenerator pinGen = new NumericalPINGenerator();
 
         public JsonResult OnGet()
         {
@@ -22,7 +23,11 @@ namespace LSSDPasswordGenCore.Pages
                 ComplexShort = complexGen.GeneratePassword(12, PasswordComplexity.Medium),
                 ComplexLoong = complexGen.GeneratePassword(18, PasswordComplexity.Medium),
                 Complex2Short = complexGen.GeneratePassword(12, PasswordComplexity.High),
-                Complex2Long = complexGen.GeneratePassword(18, PasswordComplexity.High)
+                Complex2Long = complexGen.GeneratePassword(18, PasswordComplexity.High),
+                PIN4 = pinGen.GeneratePassword(4),
+                PIN6 = pinGen.GeneratePassword(6),
+                PIN8 = pinGen.GeneratePassword(8),
+                PIN16 = pinGen.GeneratePassword(16),
             };
 
             return new JsonResult(output);

@@ -147,7 +147,10 @@
             </tr>
         </table><div class="reload_message">Reload the page to generate more</div>
         <br /><br />
-        <h3>Complex passwords for password managers</h3>
+        <h2>Not-so-easy-to-remember passwords</h2>
+        <p>Use these with a password manager system, such as <a href="https://www.lastpass.com/">LastPass</a>, or <a href="https://keepass.info/">KeePass</a>. Don't try to memorize these, they are meant to be either copied and pasted, or automatically submitted via a password manager program or browser add-in.</p>
+
+        <h3>Complex passwords</h3>
         <asp:TableCell>
             <div class="usernameandpassword" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 10pt;">
                 <div id="lblComplexPasswords">
@@ -162,11 +165,9 @@
                 </div>
             </div>
         </asp:TableCell>
-        <h4>How to use complex passwords</h4>
-        <p>Use these with a password manager system, such as <a href="https://www.lastpass.com/">LastPass</a>, or <a href="https://keepass.info/">KeePass</a>. Don't try to memorize these, they are meant to be either copied and pasted, or automatically submitted via a password manager program or browser add-in.</p>
-        <br /><br />
-        <h3>Complex passwords for YubiKeys</h3>
-        <p>Yubikey static passwords are limited to 32 characters.</p>
+
+        <h3>Shorter complex passwords</h3>
+        <p>For devices that don't support long passwords</p>        
         <table style="width:100%;">
             <tr>
                 <td>
@@ -191,6 +192,43 @@
                 </td>
             </tr>
         </table>
+        <h3>Numerical passwords</h3>
+        <p>For mobile device lock codes, voice mail PINs, or any other system that only supports numbers.</p>
+        <table style="width:100%;">
+            <tr>
+                <td width="33.3%">
+                    <div class="usernameandpassword">
+                        <div>
+                            @foreach (string pwd in Model.PasswordsPin4)
+                            {
+                                <div>@pwd</div>
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td width="33.3%">
+                    <div class="usernameandpassword">
+                        <div>
+                            @foreach (string pwd in Model.PasswordsPin6)
+                            {
+                                <div>@pwd</div>
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td width="33.3%">
+                    <div class="usernameandpassword">
+                        <div>
+                            @foreach (string pwd in Model.PasswordsPin8)
+                            {
+                                <div>@pwd</div>
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
         <br /><br />
         <h2>JSON and XML passwords</h2>
         <ul>
