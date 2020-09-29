@@ -5,6 +5,7 @@
     Response.ContentType = "text/xml";
     ComplexPasswordGenerator complexGen = new ComplexPasswordGenerator();
     WordBasedPasswordGenerator wordGen = new WordBasedPasswordGenerator();
+    NumericalPINGenerator pinGen = new NumericalPINGenerator();
 }
 <?xml version="1.0" encoding="UTF-8" ?>
 <passwords>
@@ -14,4 +15,8 @@
     <complex-long>@complexGen.GeneratePassword(18, PasswordComplexity.Medium)</complex-long>
     <complex2-short>@complexGen.GeneratePassword(12, PasswordComplexity.High)</complex2-short>
     <complex2-long>@complexGen.GeneratePassword(18, PasswordComplexity.High)</complex2-long>
+    <pin4>@pinGen.GeneratePassword(4)</pin4>
+    <pin6>@pinGen.GeneratePassword(6)</pin6>
+    <pin8>@pinGen.GeneratePassword(8)</pin8>
+    <pin16>@pinGen.GeneratePassword(16)</pin16>
 </passwords>

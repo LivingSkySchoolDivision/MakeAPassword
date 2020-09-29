@@ -18,8 +18,11 @@ namespace LSSDPasswordGenCore.Pages
         public List<string> PasswordsComplexHigh { get; set; }
         public List<string> PasswordsYubikeyLow { get; set; }
         public List<string> PasswordsYubikeyHigh { get; set; }
-        public Stopwatch stopwatch = new Stopwatch();        
-        private const int _numPasswordsToGenerate = 5;
+        public List<string> PasswordsPin4 { get; set; }
+        public List<string> PasswordsPin6 { get; set; }
+        public List<string> PasswordsPin8 { get; set; }
+        public Stopwatch stopwatch = new Stopwatch();
+        private const int _numPasswordsToGenerate = 7;
 
         public void OnGet()
         {
@@ -27,6 +30,7 @@ namespace LSSDPasswordGenCore.Pages
             stopwatch.Start();
             ComplexPasswordGenerator complexGen = new ComplexPasswordGenerator();
             WordBasedPasswordGenerator wordGen = new WordBasedPasswordGenerator();
+            NumericalPINGenerator pinGen = new NumericalPINGenerator();
             this.PasswordsComplexHigh = new List<string>();
             this.PasswordsComplexLow = new List<string>();
             this.PasswordsWordsHigh = new List<string>();
@@ -34,6 +38,9 @@ namespace LSSDPasswordGenCore.Pages
             this.PasswordsWordsLow = new List<string>();
             this.PasswordsYubikeyLow = new List<string>();
             this.PasswordsYubikeyHigh = new List<string>();
+            this.PasswordsPin4 = new List<string>();
+            this.PasswordsPin6 = new List<string>();
+            this.PasswordsPin8 = new List<string>();
 
             for (int x = 0; x < _numPasswordsToGenerate; x++)
             {
@@ -41,7 +48,10 @@ namespace LSSDPasswordGenCore.Pages
                 PasswordsWordsMedium.Add(wordGen.GeneratePassword(16, PasswordComplexity.Medium));
                 PasswordsWordsLow.Add(wordGen.GeneratePassword(12, PasswordComplexity.Medium));
                 PasswordsComplexHigh.Add(complexGen.GeneratePassword(64, PasswordComplexity.High));
-                PasswordsComplexLow.Add(complexGen.GeneratePassword(64, PasswordComplexity.Medium));                
+                PasswordsComplexLow.Add(complexGen.GeneratePassword(64, PasswordComplexity.Medium));
+                PasswordsPin4.Add(pinGen.GeneratePassword(4));
+                PasswordsPin6.Add(pinGen.GeneratePassword(6));
+                PasswordsPin8.Add(pinGen.GeneratePassword(8));
             }
 
             // So passwords are sorted strongest on bottom
