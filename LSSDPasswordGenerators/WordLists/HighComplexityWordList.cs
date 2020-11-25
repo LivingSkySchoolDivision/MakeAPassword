@@ -1455,7 +1455,7 @@ namespace LSSDPasswordGenerators.WordLists
             ,"cadogan"
             ,"caesar"
             ,"cafru"
-            ,"caf�"
+            ,"cafe"
             ,"cage"
             ,"cahoots"
             ,"cake"
