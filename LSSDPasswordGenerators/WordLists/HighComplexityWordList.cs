@@ -2668,7 +2668,6 @@ namespace LSSDPasswordGenerators.WordLists
             ,"cymbal"
             ,"cytoplasm"
             ,"cytoplast"
-            ,"c�sar"
             ,"dab"
             ,"dad"
             ,"daffodil"
