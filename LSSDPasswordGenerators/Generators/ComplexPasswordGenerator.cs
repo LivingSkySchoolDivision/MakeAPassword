@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,8 @@ namespace LSSDPasswordGenerators.Generators
 {
     public class ComplexPasswordGenerator
     {
-        private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
+        private RNGCryptoServiceProvider _rngprovider = new RNGCryptoServiceProvider();
+        
         private string allowedCharacters_low = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         private string allowedCharacters_high = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-?][{}|,.:;`~";
 
@@ -23,6 +25,12 @@ namespace LSSDPasswordGenerators.Generators
                 default:
                     return generateHighComplexityPassword(length);
             }
+        }
+
+        private int nextRandomInt() 
+        {   
+            byte[] oneByte = new byte[1];                     
+            _rngprovider.GetBytes();
         }
         
         private string generateMediumComplexityPassword(int length)
