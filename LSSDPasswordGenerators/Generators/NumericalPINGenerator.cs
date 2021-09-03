@@ -8,7 +8,7 @@ namespace LSSDPasswordGenerators.Generators
 {
     public class NumericalPINGenerator
     {
-        private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
+        private readonly CryptoRandom _random = new CryptoRandom();
         private string allowedCharacters = "9876543210";        
 
         public string GeneratePassword(int length)
