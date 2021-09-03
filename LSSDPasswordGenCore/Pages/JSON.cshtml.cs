@@ -21,7 +21,7 @@ namespace LSSDPasswordGenCore.Pages
                 WordShort = wordGen.GeneratePassword(12, PasswordComplexity.High),
                 WordLong = wordGen.GeneratePassword(20, PasswordComplexity.High),
                 ComplexShort = complexGen.GeneratePassword(12, PasswordComplexity.Medium),
-                ComplexLoong = complexGen.GeneratePassword(18, PasswordComplexity.Medium),
+                ComplexLong = complexGen.GeneratePassword(18, PasswordComplexity.Medium),
                 Complex2Short = complexGen.GeneratePassword(12, PasswordComplexity.High),
                 Complex2Long = complexGen.GeneratePassword(18, PasswordComplexity.High),
                 PIN4 = pinGen.GeneratePassword(4),

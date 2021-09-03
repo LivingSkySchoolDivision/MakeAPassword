@@ -18,6 +18,7 @@ namespace LSSDPasswordGenCore.Pages
         public List<string> PasswordsComplexHigh { get; set; }
         public List<string> PasswordsYubikeyLow { get; set; }
         public List<string> PasswordsYubikeyHigh { get; set; }
+        public List<string> PasswordsTwentyNine { get; set; }
         public List<string> PasswordsPin4 { get; set; }
         public List<string> PasswordsPin6 { get; set; }
         public List<string> PasswordsPin8 { get; set; }
@@ -38,6 +39,7 @@ namespace LSSDPasswordGenCore.Pages
             this.PasswordsWordsLow = new List<string>();
             this.PasswordsYubikeyLow = new List<string>();
             this.PasswordsYubikeyHigh = new List<string>();
+            this.PasswordsTwentyNine = new List<string>();
             this.PasswordsPin4 = new List<string>();
             this.PasswordsPin6 = new List<string>();
             this.PasswordsPin8 = new List<string>();
@@ -59,7 +61,7 @@ namespace LSSDPasswordGenCore.Pages
             {
                 PasswordsYubikeyHigh.Add(complexGen.GeneratePassword(32, PasswordComplexity.High));
                 PasswordsYubikeyLow.Add(complexGen.GeneratePassword(32, PasswordComplexity.Medium));
-
+                PasswordsTwentyNine.Add(complexGen.GeneratePassword(29, PasswordComplexity.Medium));
                 PasswordsWordsHigh.Add(wordGen.GeneratePassword(18, PasswordComplexity.High));
                 PasswordsWordsMedium.Add(wordGen.GeneratePassword(16, PasswordComplexity.Medium));
                 PasswordsWordsLow.Add(wordGen.GeneratePassword(12, PasswordComplexity.Medium));
