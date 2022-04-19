@@ -13,6 +13,7 @@ namespace LSSDPasswordGenerators.Generators
 
         private string allowedCharacters_low = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         private string allowedCharacters_high = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-?][{}|,.:;`~";
+        private string allowedCharacters_ciscosafe = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%&()*+,-./:;=[\\]^_{|}~";
 
         public string GeneratePassword(int length, PasswordComplexity complexity)
         {
@@ -46,6 +47,18 @@ namespace LSSDPasswordGenerators.Generators
             for (int x = 0; x < length; x++)
             {
                 password.Append(allowedCharacters_high[_random.Next(0, allowedCharacters_high.Length)]);
+            }
+
+            return password.ToString();
+        }
+        
+        private string generateCiscoSafePassword(int length)
+        {
+            StringBuilder password = new StringBuilder();
+
+            for (int x = 0; x < length; x++)
+            {
+                password.Append(allowedCharacters_ciscosafe[_random.Next(0, allowedCharacters_ciscosafe.Length)]);
             }
 
             return password.ToString();

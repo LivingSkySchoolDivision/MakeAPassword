@@ -8,6 +8,7 @@ namespace LSSDPasswordGenerators.Generators
     public enum PasswordComplexity
     {
         Medium,
-        High
+        High,
+        CiscoSafe
     }
 }

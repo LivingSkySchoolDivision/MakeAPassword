@@ -166,6 +166,18 @@
             </div>
         </asp:TableCell>
 
+        <h3>Cisco safe passwords</h3>        
+        <asp:TableCell>
+            <div class="usernameandpassword" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 10pt;">
+                <div id="lblCiscoSafePasswords">
+                    @foreach (string pwd in Model.PasswordsCiscoSafe)
+                    {
+                        <div>@pwd</div>
+                    }
+                </div>
+            </div>
+        </asp:TableCell>
+
         <h3>Shorter complex passwords</h3>
         <p>For devices that don't support long passwords</p>        
         <table style="width:100%;">

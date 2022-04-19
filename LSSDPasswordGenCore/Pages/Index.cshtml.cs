@@ -16,6 +16,7 @@ namespace LSSDPasswordGenCore.Pages
         public List<string> PasswordsWordsHigh { get; set; }
         public List<string> PasswordsComplexLow { get; set; }
         public List<string> PasswordsComplexHigh { get; set; }
+        public List<string> PasswordsCiscoSafe { get; set; }
         public List<string> PasswordsYubikeyLow { get; set; }
         public List<string> PasswordsYubikeyHigh { get; set; }
         public List<string> PasswordsTwentyNine { get; set; }
@@ -51,6 +52,7 @@ namespace LSSDPasswordGenCore.Pages
                 PasswordsWordsLow.Add(wordGen.GeneratePassword(12, PasswordComplexity.Medium));
                 PasswordsComplexHigh.Add(complexGen.GeneratePassword(64, PasswordComplexity.High));
                 PasswordsComplexLow.Add(complexGen.GeneratePassword(64, PasswordComplexity.Medium));
+                PasswordsCiscoSafe.Add(complexGen.GeneratePassword(64, PasswordComplexity.CiscoSafe));
                 PasswordsPin4.Add(pinGen.GeneratePassword(4));
                 PasswordsPin6.Add(pinGen.GeneratePassword(6));
                 PasswordsPin8.Add(pinGen.GeneratePassword(8));
@@ -66,6 +68,7 @@ namespace LSSDPasswordGenCore.Pages
                 PasswordsWordsMedium.Add(wordGen.GeneratePassword(16, PasswordComplexity.Medium));
                 PasswordsWordsLow.Add(wordGen.GeneratePassword(12, PasswordComplexity.Medium));
             }
+
             stopwatch.Stop();
         }
     }

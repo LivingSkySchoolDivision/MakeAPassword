@@ -28,6 +28,7 @@ namespace LSSDPasswordGenCore.Pages
                 PIN6 = pinGen.GeneratePassword(6),
                 PIN8 = pinGen.GeneratePassword(8),
                 PIN16 = pinGen.GeneratePassword(16),
+                CISCOSAFE0 = complexGen.GeneratePassword(25, PasswordComplexity.CiscoSafe)
             };
 
             return new JsonResult(output);
