@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MakeAPassword
 {
-    class HighComplexityWordList
+    public  static partial class WordList
     {
-        public readonly List<string> Words = new List<string>()
+        public static readonly List<string> HighComplexity = new List<string>()
         {
             "abacus",
             "abandon",

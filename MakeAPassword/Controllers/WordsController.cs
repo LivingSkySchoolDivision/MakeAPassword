@@ -6,14 +6,14 @@ namespace MakeAPassword;
 [ApiController]
 [Route("api/[controller]")]
 
-public class ComplexController : ControllerBase
+public class WordsController : ControllerBase
 {
-    private const int maxLength = 256;
+    private const int maxLength = 128;
     private const int minLength = 8;
 
-    private readonly ComplexPasswordService _generator;
+    private readonly WordPasswordService _generator;
 
-    public ComplexController(ComplexPasswordService generator)
+    public WordsController(WordPasswordService generator)
     {
         _generator = generator;
     }
@@ -21,7 +21,7 @@ public class ComplexController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok(new APIResponse(_generator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars,minLength)));
+        return Ok(new APIResponse(_generator.Generate(WordList.HighComplexity, WordSeparators.JustSpecialChars, minLength)));
     }
 
     [HttpGet("{length}")]
@@ -31,6 +31,7 @@ public class ComplexController : ControllerBase
         if (length > maxLength) { actualLength = maxLength; }
         if (length < minLength) { actualLength = minLength; }
 
-        return Ok(new APIResponse(_generator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars,actualLength)));
+        
+        return Ok(new APIResponse(_generator.Generate(WordList.HighComplexity, WordSeparators.Spaces, actualLength)));
     }
 }

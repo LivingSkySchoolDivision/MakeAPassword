@@ -4,8 +4,12 @@ namespace MakeAPassword;
 
 public class ComplexPasswordService 
 {    
-    private readonly CryptoRandom _random = new CryptoRandom();
+    private readonly RandomNumberService _random;
 
+    public ComplexPasswordService(RandomNumberService randomService) 
+    {
+        this._random = randomService;
+    }
 
     public string Generate(string charset, int length)
     {
