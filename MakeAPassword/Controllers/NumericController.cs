@@ -8,9 +8,6 @@ namespace MakeAPassword;
 
 public class NumericController : ControllerBase
 {
-    private const int maxLength = 16;
-    private const int minLength = 6;
-
     private readonly ComplexPasswordService _generator;
 
     public NumericController(ComplexPasswordService generator)
@@ -21,16 +18,19 @@ public class NumericController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok(new APIResponse(_generator.Generate(ComplexCharacterSets.JustNumbers,minLength)));
+        return Ok(new 
+            {
+                numeric4 = _generator.Generate(ComplexCharacterSets.JustNumbers,4),
+                numeric6 = _generator.Generate(ComplexCharacterSets.JustNumbers,6),
+                numeric8 = _generator.Generate(ComplexCharacterSets.JustNumbers,8),
+                numeric12 = _generator.Generate(ComplexCharacterSets.JustNumbers,12),
+                numeric16 = _generator.Generate(ComplexCharacterSets.JustNumbers,16),
+                numeric20 = _generator.Generate(ComplexCharacterSets.JustNumbers,20),
+                numeric24 = _generator.Generate(ComplexCharacterSets.JustNumbers,24),
+                numeric29 = _generator.Generate(ComplexCharacterSets.JustNumbers,29),
+                numeric32 = _generator.Generate(ComplexCharacterSets.JustNumbers,32),
+                numeric128 = _generator.Generate(ComplexCharacterSets.JustNumbers,128)
+            });
     }
 
-    [HttpGet("{length}")]
-    public IActionResult Get(int length)
-    {
-        int actualLength = length;
-        if (length > maxLength) { actualLength = maxLength; }
-        if (length < minLength) { actualLength = minLength; }
-
-        return Ok(new APIResponse(_generator.Generate(ComplexCharacterSets.JustNumbers,actualLength)));
-    }
 }
