@@ -1,10 +1,255 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Make A Password";
 }
 
+<style type="text/css">
+    .password_container { padding: 10px; border: 2px solid #C0C0C0; border-radius: 5px; text-align: center; font-family: monospace; font-size: 10pt; }
+    .password { white-space: nowrap; }
+</style>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <h1 class="display-3">Make-A-Password</h1>
+</div><br/>
+    <h2>Passwords that you can remember</h2>
+    <p>The idea behind these passwords is that longer passwords that you can remember are better than shorter passwords that are harder to remember (but easy for a computer to brute-force).</p>
+    <p>None of the passwords generated on this site are stored or logged in any way. Reload the page to generate new ones.</p>
+
+    <br/>
+    <h4>Passphrases</h4>
+    <p>A passphrase is a string of words used as a password - or in other words, it's using a sentence instead of a word or two for your password. Sentences are easier to remember, and long enough to prevent simple brute-force password attacks.</p>
+    <p>Use the words below to make up a story, and remember the story (the sillier the better).</p>
+    
+    <div class="password_container">
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.MediumComplexity, WordSeparators.Spaces, 20)</div>
+        }
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.Spaces, 20)</div>
+        }
+        </div>
+
+        
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.Spaces, 30)</div>
+        }
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.MediumComplexity, WordSeparators.None, 12)</div>
+        }
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.None, 20)</div>
+        }
+        </div>
+
+        
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.None, 30)</div>
+        }
+        </div>
+    </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.MediumComplexity, WordSeparators.JustSpecialChars, 12)</div>
+        }
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.JustSpecialChars, 20)</div>
+        }
+        </div>
+
+        
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.JustSpecialChars, 30)</div>
+        }
+        </div>
+    </div>
+
+    <br/>
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.MediumComplexity, WordSeparators.Complex, 12)</div>
+        }
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.Complex, 20)</div>
+        }
+        </div>
+
+        
+        <div class="col-lg-4 col-md-12">
+        @for(int x = 0; x < 5; x++) 
+        {
+            <div class="password">@Model.WordPasswordGenerator.Generate(WordList.HighComplexity, WordSeparators.Complex, 30)</div>
+        }
+        </div>
+    </div>
+    </div>    
+
+    <br/>
+    <h4>PIN Numbers</h4>
+    <p>Use these when you can only use numbers, like for your phone's voice mail password.</p>
+    <div class="password_container">
+        @for(int x = 0; x < 5; x++) {
+            <div class="row">
+            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 4)</div>
+            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 4)</div>
+            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
+            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
+            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
+            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 8)</div>
+            </div>
+        }
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h2>Not-so-easy-to-remember passwords</h2>
+    <p>Use these with a password management system (like <a href="https://keepass.info">KeePass</a>). Don't try to memorize these, they are meant to be either copied and pasted, or automatically submitted via a password manager program or browser add-in.</p>
+    <h4>Complex passwords - 64 character</h4>
+    <div class="password_container row">
+        <div class="col">
+        @for(int x = 0; x < 10; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumeric, 64)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 10; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars, 64)</div>
+        }
+        </div>
+    </div>
+    <br/>
+    <h4>Complex passwords - 32 characters</h4>
+    <div class="password_container row">
+        
+        <div class="col">
+        @for(int x = 0; x < 5; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars, 32)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 5; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumeric, 32)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 5; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars, 32)</div>
+        }
+        </div>
+    </div>
+    <br/>
+    <h4>Complex passwords - 29 characters</h4>
+    <div class="password_container row">
+        
+        <div class="col">
+        @for(int x = 0; x < 5; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars, 29)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 5; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumeric, 29)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 5; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericWithSpecialChars, 29)</div>
+        }
+        </div>
+    </div>
+
+    <br/>
+    <h4>Cisco-Safe complex passwords</h4>
+    <p>Some systems don't like some characters in passwords, so these skip the problematic characters.</p>
+
+    <div class="password_container row">
+        <div class="col">
+        @for(int x = 0; x < 10; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumeric, 25)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 10; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericCiscoSafe, 25)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 10; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericCiscoSafe, 25)</div>
+        }
+        </div>
+
+        <div class="col">
+        @for(int x = 0; x < 10; x++)
+        {
+            <div>@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.AlphaNumericCiscoSafe, 25)</div>
+        }
+        </div>
+    </div>
+
+    <br/>
+    <h2>API</h2>
+    <ul>
+        <li><a href="/api/Complex">Complex</a></li>
+        <li><a href="/api/Numeric">Numeric</a></li>
+        <li><a href="/api/Words">Words</a></li>
+    </ul>
