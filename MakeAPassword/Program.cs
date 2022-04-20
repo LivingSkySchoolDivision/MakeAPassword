@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<RandomNumberService>();
 builder.Services.AddSingleton<ComplexPasswordService>();
 builder.Services.AddSingleton<WordPasswordService>();
 

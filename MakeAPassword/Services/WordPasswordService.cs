@@ -1,16 +1,10 @@
 using System.Text;
+using System.Security.Cryptography;
 
 namespace MakeAPassword;
 
 public class WordPasswordService 
-{    
-    private readonly RandomNumberService _random;
-
-    public WordPasswordService(RandomNumberService randomService) 
-    {
-        this._random = randomService;
-    }
-
+{
     public string Generate(List<string> wordlist, List<string> separators, int minLength)
     {
         // Basically throw random words together until the length requirement is met
@@ -60,7 +54,7 @@ public class WordPasswordService
     private string getRandomWord(List<string> wordlist)
     {
         if (wordlist.Count > 0) {
-            return wordlist[_random.Next(0, wordlist.Count)];
+            return wordlist[RandomNumberGenerator.GetInt32(0, wordlist.Count)];
         } else {
             return string.Empty;
         }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MakeAPassword;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("API/[controller]")]
 
 public class ComplexController : ControllerBase
 {
