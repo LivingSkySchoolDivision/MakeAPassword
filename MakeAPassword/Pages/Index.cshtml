@@ -127,12 +127,9 @@
     <div class="password_container">
         @for(int x = 0; x < 5; x++) {
             <div class="row">
-            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 4)</div>
-            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 4)</div>
-            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
-            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
-            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
-            <div class="col">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 8)</div>
+            <div class="col password">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 4)</div>
+            <div class="col password">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 6)</div>
+            <div class="col password">@Model.ComplexPasswordGenerator.Generate(ComplexCharacterSets.JustNumbers, 8)</div>
             </div>
         }
     </div>
