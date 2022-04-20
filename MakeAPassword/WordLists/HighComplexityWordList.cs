@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LSSDPasswordGenerators.WordLists
+namespace MakeAPassword
 {
     class HighComplexityWordList
     {

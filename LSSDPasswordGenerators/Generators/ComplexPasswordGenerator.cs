@@ -11,10 +11,7 @@ namespace LSSDPasswordGenerators.Generators
     {
         private readonly CryptoRandom _random = new CryptoRandom();
 
-        private string allowedCharacters_low = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        private string allowedCharacters_high = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-?][{}|,.:;`~";
-        private string allowedCharacters_ciscosafe = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%&()*+,-./:;=[\\]^_{|}~";
-
+        
         public string GeneratePassword(int length, PasswordComplexity complexity)
         {
             switch(complexity)
