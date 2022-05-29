@@ -69,3 +69,15 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Send notification to Teams
+        uses: toko-bifrost/ms-teams-deploy-card@3.1.2
+        if: always()
+        with:
+          github-token: ${{ github.token }}
+          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK }}
+          show-on-start: false
+          show-on-exit: true
+          custom-facts: |
+            - name: Build Tag
+              value: ${{ env.IMAGETIMESTAMP }}            
