@@ -78,6 +78,7 @@ jobs:
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK }}
           show-on-start: false
           show-on-exit: true
+          card-layout-exit: complete
           custom-facts: |
             - name: Build Tag
               value: ${{ env.IMAGETIMESTAMP }}            
